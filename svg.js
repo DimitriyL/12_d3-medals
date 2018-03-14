@@ -11,17 +11,19 @@ var display = function(){
     gold.setAttribute("cx", 100);
     gold.setAttribute("cy", 100);
     gold.setAttribute("r",10);
-    gold.setAttribute("fill", "goldenrod");
+    gold.setAttribute("fill", "#FFD700");
+    
     var silver = document.createElementNS("http://www.w3.org/2000/svg","circle");
     silver.setAttribute("cx", 100);
     silver.setAttribute("cy", 250);
     silver.setAttribute("r",10);
-    silver.setAttribute("fill", "lightsteelblue");
+    silver.setAttribute("fill", "#C0C0C0");
+    
     var bronze = document.createElementNS("http://www.w3.org/2000/svg","circle");
     bronze.setAttribute("cx", 100);
     bronze.setAttribute("cy", 400);
     bronze.setAttribute("r",10);
-    bronze.setAttribute("fill", "orange");
+    bronze.setAttribute("fill", "#CD7F32");
     
     pic.appendChild(gold);
     pic.appendChild(silver);
@@ -30,9 +32,8 @@ var display = function(){
 
 var medalize = function(e){
     var medals;
-    if(isGermany == true){
-	medals = d3.selectAll("circle")
-	medals.data(Germany);
+    if(isGermany){
+	medals = d3.selectAll("circle").data(Germany);
     }
     else{
 	medals = d3.selectAll("circle").data(Canada);
@@ -41,14 +42,11 @@ var medalize = function(e){
 }
 
 var switchFxn = function(e){
-    if(isGermany == true){
-	isGermany = false;
-	country.innerHTML = "Canada";
-    }
-    else{
-	isGermany = true;
+    isGermany = !isGermany;
+    if(isGermany)
 	country.innerHTML = "Germany";
-    }
+    else
+	country.innerHTML = "Canada";
     medalize();
 }
 
